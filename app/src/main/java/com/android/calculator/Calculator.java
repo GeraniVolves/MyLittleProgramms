@@ -3,17 +3,12 @@ package com.android.calculator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class Calculator extends Activity implements View.OnClickListener {
-
-    Button MENU_RESET_ID;
-    Button MENU_QUIT_ID;
 
     EditText etNum1;
     EditText etNum2;
@@ -22,6 +17,9 @@ public class Calculator extends Activity implements View.OnClickListener {
     Button btnSub;
     Button btnMult;
     Button btnDiv;
+
+    Button btnReset;
+    Button btnQuit;
 
     String oper = "";
 
@@ -41,8 +39,8 @@ public class Calculator extends Activity implements View.OnClickListener {
         btnMult = (Button) findViewById(R.id.btnMult);
         btnDiv = (Button) findViewById(R.id.btnDiv);
 
-        MENU_QUIT_ID = (Button) findViewById(R.id.quit);
-        MENU_RESET_ID = (Button) findViewById(R.id.reset);
+        btnReset = (Button) findViewById(R.id.reset);
+        btnQuit = (Button) findViewById(R.id.quit);
 
         tvResult = (TextView) findViewById(R.id.tvResult);
 
@@ -50,6 +48,8 @@ public class Calculator extends Activity implements View.OnClickListener {
         btnSub.setOnClickListener(this);
         btnMult.setOnClickListener(this);
         btnDiv.setOnClickListener(this);
+        btnReset.setOnClickListener(this);
+        btnQuit.setOnClickListener(this);
     }
 
     @Override public void onClick(View view) {
@@ -80,27 +80,17 @@ public class Calculator extends Activity implements View.OnClickListener {
                 oper = "/";
                 result = num1 / num2;
                 break;
-            default:
-                break;
-        }
-        tvResult.setText(num1 + " " + oper + " " + num2 + " = " + result);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
             case R.id.reset:
                 etNum1.setText("");
                 etNum2.setText("");
                 tvResult.setText("");
                 break;
-
             case R.id.quit:
                 finish();
                 break;
+            default:
+                break;
         }
-        return super.onOptionsItemSelected(item);
+        tvResult.setText(num1 + " " + oper + " " + num2 + " = " + result);
     }
-
 }
