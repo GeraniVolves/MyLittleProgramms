@@ -80,17 +80,22 @@ public class Calculator extends Activity implements View.OnClickListener {
                 oper = "/";
                 result = num1 / num2;
                 break;
+            default:
+                break;
+        }
+        tvResult.setText(num1 + " " + oper + " " + num2 + " = " + result);
+
+        switch (view.getId()) {
             case R.id.reset:
                 etNum1.setText("");
                 etNum2.setText("");
                 tvResult.setText("");
                 break;
+        }
+        switch (view.getId()) {
             case R.id.quit:
                 finish();
                 break;
-            default:
-                break;
         }
-        tvResult.setText(num1 + " " + oper + " " + num2 + " = " + result);
     }
 }
